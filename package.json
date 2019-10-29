@@ -1,0 +1,35 @@
+{
+  "name": "jita-community-edition",
+  "version": "1.0.0",
+  "description": "JITA streamlines design and building communication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JitaIO/jita-community-edition.git"
+  },
+  "keywords": [
+    "Node",
+    "Neo4j",
+    "Apollo",
+    "GraphQL",
+    "Graph",
+    "Database",
+    "Architecture",
+    "Building",
+    "Communication",
+    "Construction",
+    "Project",
+    "Manage",
+    "House",
+    "Renovation"
+  ],
+  "author": "Jita.io",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/JitaIO/jita-community-edition/issues"
+  },
+  "homepage": "https://github.com/JitaIO/jita-community-edition#readme"
+}
