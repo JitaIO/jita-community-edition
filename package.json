@@ -4,7 +4,8 @@
   "description": "JITA streamlines design and building communication.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "./node_modules/.bin/nodemon --exec babel-node src/index.js"
   },
   "repository": {
     "type": "git",
