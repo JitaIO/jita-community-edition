@@ -43,6 +43,47 @@ if(!isProduction) console.log("Initiating API Core in \x1b[33m%s\x1b[0m Mode:", 
 const app = express();
 
 
+/**
+ * Configer server middleware
+ * Cross-Origin Resource Sharing (CORS) 
+ * Load parsers & set encoding 
+ * Error handle
+ * Logging
+ */
+
+// app.use(cors());
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "Cross-Origin Resource Sharing (CORS)");
+
+// app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+// app.use(bodyParser.json({limit: '50mb', extended: true}));
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "bodyParser");
+
+// app.use(cookieParser());
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "cookieParser");
+// app.use(session({
+//   secret: 'keyboard cat',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: true }
+// }));
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "session");
+
+// app.use(morgan('combined', { stream: logger.stream }));
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "morgan");
+
+// app.use(flash());
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "flash");
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "passport");
+
+
+// if(!isProduction) {
+//   app.use(errorHandler());
+//   console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "errorHandler");
+// }
+
 /* 
  * Setup routes
  */
