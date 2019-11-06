@@ -3,10 +3,12 @@ const {mergeSchemas} = require('graphql-tools');
 const {printSchema} = require('graphql');
 const {makeAugmentedSchema} = require('neo4j-graphql-js');
 const PersonModel = require('./PersonModel');
+const MovieModel = require('./MovieModel');
 
 // If you had Query fields not associated with a specific type you could put them here
 const Query = `
     scalar DateTime
+
     type Query {
         _empty: String
     }
@@ -18,6 +20,7 @@ const Query = `
 const typeDefs = [
     Query, 
     PersonModel.typeDef,
+    MovieModel.typeDef,
 ]
 
 const resolvers = {};
@@ -35,6 +38,7 @@ const schema = makeAugmentedSchema({
     resolvers: merge(
         resolvers,
         PersonModel.resolvers,
+        MovieModel.resolvers,
     ),
 });
 

@@ -98,10 +98,6 @@ if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcompl
  * 
  *  server.applyMiddleware({ app, path: '/graphql' });
 */
-if(!isProduction) console.log("\nInitializing \x1b[33m%s\x1b[0m:", "Apollo Server");
-const schema = require('./models/Schema');
-if(!isProduction) console.log("Apollo Server \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "Schema");
-
 const driver = neo4j.driver(
   process.env.NEO4J_PROTOCOL + "://" + 
   process.env.NEO4J_HOST + ":" +
@@ -112,6 +108,10 @@ const driver = neo4j.driver(
   )
 );
 if(!isProduction) console.log("Apollo Server \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "Neo4j driver");
+
+if(!isProduction) console.log("\nInitializing \x1b[33m%s\x1b[0m:", "Apollo Server");
+const schema = require('./models/Schema');
+if(!isProduction) console.log("Apollo Server \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "Schema");
 
 const server = new ApolloServer({
   schema: schema,
