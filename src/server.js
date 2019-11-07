@@ -55,6 +55,9 @@ if(!isProduction) console.log("\nLoading \x1b[33m%s\x1b[0m:", "Routes");
 app.use('/'    , require('./routes/DefaultRoute'));
 if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/");
 
+app.use('/user', require('./routes/UserRoute'));
+if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/user");
+
 /* 
  *  Initializing Neo4j Driver 
  */
