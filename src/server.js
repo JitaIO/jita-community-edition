@@ -6,6 +6,7 @@ import session from 'express-session';
 import flash from 'flash';
 import dotenv from 'dotenv';
 import errorHandler from 'errorhandler';
+// import morgan from 'morgan';
 import { augmentSchema, makeAugmentedSchema } from 'neo4j-graphql-js';
 import { ApolloServer } from 'apollo-server-express';
 import { v1 as neo4j } from 'neo4j-driver';
@@ -40,6 +41,9 @@ app.use(session({
 }));
 if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "session");
 
+// app.use(morgan('combined'));
+// if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "morgan");
+
 app.use(flash());
 if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "flash");
 
@@ -69,8 +73,20 @@ const driver = neo4j.driver(
 );
 if(!isProduction) console.log("Apollo Server \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "Neo4j driver");
 
-/* 
- * Load type and resolver schemas
+const schema = makeAugmentedSchema({
+    config: {
+            query: true,
+            mutation: true
+    },
+    resolverValidationOptions: {
+        requireResolversForResolveType: false
+    },
+    typeDefs,
+    resolvers
+});
+
+/*
+ * Compile Schema
  * Add auto-generated mutations
  */
 const schema = makeAugmentedSchema({
