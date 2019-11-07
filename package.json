@@ -54,6 +54,7 @@
     "flash": "^1.1.0",
     "generate-password": "^1.4.2",
     "graphql": "^14.5.8",
+    "graphql-server-express": "^1.4.1",
     "graphql-subscriptions": "^1.1.0",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^5.0.0-rc.1",
