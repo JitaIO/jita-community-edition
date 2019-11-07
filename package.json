@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "./node_modules/.bin/nodemon --exec babel-node src/index.js"
+    "start": "./node_modules/.bin/nodemon --exec babel-node src/start.js"
   },
   "repository": {
     "type": "git",
@@ -82,6 +82,7 @@
     "@babel/node": "^7.7.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
     "errorhandler": "^1.5.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
