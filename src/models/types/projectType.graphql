@@ -1,0 +1,19 @@
+type _ProjectInput
+
+type Project {
+    ID: ID!
+    title: String
+    tagline: String
+    users(first: Int = 3, offset: Int = 0): [User] @relation(name: "IS_IN", direction:"IN")
+}
+
+type Query {
+    Project(ID: ID, title: String, tagline: String): [Project]
+    AllProjects: [Project]
+}
+
+type Mutation {
+    CreateProject(ID: ID!, title: String!, tagline: String): Project
+    UpdateProject(ID: ID!, title: String!, tagline: String): Project
+    DeleteProject(ID: ID!, title: String!, tagline: String): Project
+}

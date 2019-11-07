@@ -1,0 +1,18 @@
+type _UserInput
+
+type User {
+    ID: ID!
+    name: String
+    projects: [Project] @relation(name: "IS_IN", direction: "OUT")
+}
+
+type Query {
+    User: User
+    Users: [User]
+}
+
+type Mutation {
+    CreateUser(ID: ID!, name: String): User
+    UpdateUser(ID: ID!, name: String): User
+    DeleteUser(ID: ID!, name: String): User
+}
