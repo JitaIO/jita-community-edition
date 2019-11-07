@@ -57,6 +57,7 @@
     "graphql-subscriptions": "^1.1.0",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^5.0.0-rc.1",
+    "graphql-tools-type-uuid": "^2.0.1",
     "http": "0.0.0",
     "jsonwebtoken": "^8.5.1",
     "localStorage": "^1.0.4",
