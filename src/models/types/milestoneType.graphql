@@ -1,0 +1,20 @@
+type _MilestoneInput
+
+type Milestone {
+    ID: ID!
+    name: String
+    deadline: String
+    projects: [Project] @relation(name: "HAS", direction: "IN")
+    tasks: [Task] @relation(name: "HAS", direction: "OUT")
+}
+
+type Query {
+    Milestone: Milestone
+    Milestones: [Milestone]
+}
+
+type Mutation {
+    CreateMilestone(ID: ID!, name: String): Milestone
+    UpdateMilestone(ID: ID!, name: String): Milestone
+    DeleteMilestone(ID: ID!, name: String): Milestone
+}

@@ -4,6 +4,7 @@ type User {
     ID: ID!
     name: String
     projects: [Project] @relation(name: "IS_IN", direction: "OUT")
+    tasks: [Task] @relation(name: "ASSIGNED_TO", direction: "OUT")
 }
 
 type Query {

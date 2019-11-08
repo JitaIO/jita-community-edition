@@ -58,6 +58,12 @@ if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcompl
 app.use('/user', require('./routes/UserRoute'));
 if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/user");
 
+app.use('/milestone', require('./routes/MilestoneRoute'));
+if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/milestone");
+
+app.use('/task', require('./routes/TaskRoute'));
+if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/task");
+
 /* 
  *  Initializing Neo4j Driver 
  */

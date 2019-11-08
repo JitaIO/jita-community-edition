@@ -4,7 +4,8 @@ type Project {
     ID: ID!
     title: String
     tagline: String
-    users(first: Int = 3, offset: Int = 0): [User] @relation(name: "IS_IN", direction:"IN")
+    users: [User] @relation(name: "IS_IN", direction:"IN")
+    milestones: [Milestone] @relation(name: "HAS", direction:"OUT")
 }
 
 type Query {

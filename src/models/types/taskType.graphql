@@ -1,0 +1,20 @@
+type _TaskInput
+
+type Task {
+    ID: ID!
+    name: String
+    deadline: String
+    milestone: Milestone @relation(name: "HAS", direction: "IN")
+    users: [User] @relation(name: "ASSIGNED_TO", direction: "IN")
+}
+
+type Query {
+    Task: Task
+    Tasks: [Task]
+}
+
+type Mutation {
+    CreateTask(ID: ID!, name: String): Task
+    UpdateTask(ID: ID!, name: String): Task
+    DeleteTask(ID: ID!, name: String): Task
+}
