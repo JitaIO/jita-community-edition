@@ -1,11 +1,13 @@
 type _MilestoneInput
 
 type Milestone {
-    ID: ID!
+    UUID: UUID!
     name: String
     deadline: String
     projects: [Project] @relation(name: "HAS", direction: "IN")
     tasks: [Task] @relation(name: "HAS", direction: "OUT")
+    last_updated: DateTime
+    created_date: DateTime
 }
 
 type Query {
@@ -14,7 +16,7 @@ type Query {
 }
 
 type Mutation {
-    CreateMilestone(ID: ID!, name: String): Milestone
-    UpdateMilestone(ID: ID!, name: String): Milestone
-    DeleteMilestone(ID: ID!, name: String): Milestone
+    CreateMilestone(UUID: UUID!, name: String): Milestone
+    UpdateMilestone(UUID: UUID!, name: String): Milestone
+    DeleteMilestone(UUID: UUID!, name: String): Milestone
 }

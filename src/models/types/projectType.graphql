@@ -1,20 +1,22 @@
 type _ProjectInput
 
 type Project {
-    ID: ID!
+    UUID: UUID!
     title: String
     tagline: String
     users: [User] @relation(name: "IS_IN", direction:"IN")
     milestones: [Milestone] @relation(name: "HAS", direction:"OUT")
+    last_updated: DateTime
+    created_date: DateTime
 }
 
 type Query {
-    Project(ID: ID, title: String, tagline: String): [Project]
+    Project(UUID: UUID, title: String, tagline: String): [Project]
     AllProjects: [Project]
 }
 
 type Mutation {
-    CreateProject(ID: ID!, title: String!, tagline: String): Project
-    UpdateProject(ID: ID!, title: String!, tagline: String): Project
-    DeleteProject(ID: ID!, title: String!, tagline: String): Project
+    CreateProject(UUID: UUID!, title: String!, tagline: String): Project
+    UpdateProject(UUID: UUID!, title: String!, tagline: String): Project
+    DeleteProject(UUID: UUID!, title: String!, tagline: String): Project
 }

@@ -1,11 +1,13 @@
 type _TaskInput
 
 type Task {
-    ID: ID!
+    UUID: UUID!
     name: String
     deadline: String
     milestone: Milestone @relation(name: "HAS", direction: "IN")
     users: [User] @relation(name: "ASSIGNED_TO", direction: "IN")
+    last_updated: DateTime
+    created_date: DateTime
 }
 
 type Query {
@@ -14,7 +16,7 @@ type Query {
 }
 
 type Mutation {
-    CreateTask(ID: ID!, name: String): Task
-    UpdateTask(ID: ID!, name: String): Task
-    DeleteTask(ID: ID!, name: String): Task
+    CreateTask(UUID: UUID!, name: String): Task
+    UpdateTask(UUID: UUID!, name: String): Task
+    DeleteTask(UUID: UUID!, name: String): Task
 }

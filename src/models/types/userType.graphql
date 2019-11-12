@@ -1,19 +1,25 @@
 type _UserInput
 
 type User {
-    ID: ID!
+    UUID: UUID!
+    email: String!
+    password: String
+    hash: String
     name: String
     projects: [Project] @relation(name: "IS_IN", direction: "OUT")
     tasks: [Task] @relation(name: "ASSIGNED_TO", direction: "OUT")
+    activated: Boolean
+    created_date: DateTime
+    last_updated: DateTime
 }
 
 type Query {
-    User: User
+    User(email: String): User
     Users: [User]
 }
 
 type Mutation {
-    CreateUser(ID: ID!, name: String): User
-    UpdateUser(ID: ID!, name: String): User
-    DeleteUser(ID: ID!, name: String): User
+    CreateUser(UUID: UUID!, email: String!, password: String!, hash: String, name: String, activated: Boolean, created_date: DateTime, last_updated: DateTime): User
+    UpdateUser(UUID: UUID!, email: String!, password: String!, hash: String, name: String, activated: Boolean, last_updated: DateTime): User
+    DeleteUser(UUID: UUID!, email: String!, password: String!): User
 }

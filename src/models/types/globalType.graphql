@@ -1,2 +1,9 @@
 scalar DateTime
 scalar Date
+scalar UUID
+
+enum Roles {
+    ADMIN
+    USER
+    VIEWER
+}
