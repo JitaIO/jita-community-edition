@@ -20,6 +20,8 @@ type Query {
 
 type Mutation {
     CreateUser(UUID: UUID!, email: String!, password: String!, hash: String, name: String, activated: Boolean, created_date: DateTime, last_updated: DateTime): User
+
     UpdateUser(UUID: UUID!, email: String!, password: String!, hash: String, name: String, activated: Boolean, last_updated: DateTime): User
+
     DeleteUser(UUID: UUID!, email: String!, password: String!): User
 }

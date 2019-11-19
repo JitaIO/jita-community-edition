@@ -1,4 +1,5 @@
 import express from 'express';
+import { IpFilter as ipfilter } from 'express-ipfilter';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -18,11 +19,14 @@ const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 
 /**
+ * IP filters
  * Configer server middleware
  * Cross-Origin Resource Sharing (CORS) 
  * Load parsers & set encoding 
  * Error handle
  */
+
+
 app.use(cors());
 if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "Cross-Origin Resource Sharing (CORS)");
 
@@ -52,6 +56,9 @@ if(!isProduction) {
  * Setup routes
  */
 if(!isProduction) console.log("\nLoading \x1b[33m%s\x1b[0m:", "Routes");
+app.use('/graphql', ipfilter(process.env.GRAPHQL_TRUSTED_IPS, {}));
+if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/graphql [IP RESTRICTED!]");
+
 app.use('/'    , require('./routes/DefaultRoute'));
 if(!isProduction) console.log("Route \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/");
 
@@ -118,6 +125,6 @@ const port = process.env.GRAPHQL_PORT;
 app.listen(port, () => {
     if(!isProduction) {
         console.log("...\x1b[32mcomplete\x1b[0m");
-        console.log("\nListening on \x1b[35m%s\x1b[0m", "http://localhost:"+port+"/graphql");
+        console.log("\nListening on \x1b[35m%s\x1b[0m", "http://localhost:"+port);
     }
 });

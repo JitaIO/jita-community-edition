@@ -1,6 +1,6 @@
 import { neo4jgraphql } from 'neo4j-graphql-js';
 import v4 from 'uuid/v4';
-import { getNow } from '../Utils';
+import { getNow } from '../../lib/Utils';
 
 export default {
     Query: {
