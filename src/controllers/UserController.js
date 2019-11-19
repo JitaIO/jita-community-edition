@@ -1,3 +1,5 @@
+import {isNil} from 'lodash';
+import bcrypt from 'bcrypt';
 import uuid4 from 'uuid/v4';
 import crypto from 'crypto';
 import apolloClient from './apolloClient';
@@ -5,6 +7,7 @@ import gql from 'graphql-tag';
 import validator from 'validator';
 import dotenv from 'dotenv';
 import { getNow } from '../lib/Utils';
+import authService from '../services/authService';
 
 const UserController = {
     getUserByEmail: (req, res, next) => {
@@ -27,7 +30,7 @@ const UserController = {
             .then(data => {
                 const User = data.data.User;
                 console.log(User);
-                
+
                 if(User != null){
                     res.status(200).json({
                         statusCode: 200,
@@ -107,7 +110,7 @@ const UserController = {
                     .then(data => {
                         const User = data.data.User;
                         console.log(User);
-                        
+
                         if(User != null){
                             res.status(200).json({
                                 statusCode: 200,
@@ -141,6 +144,60 @@ const UserController = {
         } catch (err) {
             console.error(err);
             return err;
+        }
+    },
+
+    signin: (req, res, next) => {
+        let access_token = null;
+        let refresh_token = null;
+        let message = null;
+        let status = false;
+
+        const email = req.body.email;
+        const password = req.body.password;
+
+        if (isNil(email) || isNil(password)) {
+            message = 'Email and password is required!!!';
+            res.status(400).json({message}).end();
+            return
+        }
+
+        try{
+            apolloClient.query({
+                variables: {
+                    email,
+                    hash: bcrypt.hashSync(password, parseInt(process.env.BCRYPT_SALT_ROUND))
+                },
+                query: gql `
+                query User($email: String!) {
+                    User(email: $email) {
+                        UUID,
+                        email,
+                        name,
+                        activated,
+                        hash,
+                    }
+                }
+                `
+            })
+            .then(async (data) => {
+                const User = data.data.User;
+                if (isNil(User)){
+                    message = 'Accout not found!';
+                } else if (await bcrypt.compare(password, User.hash) == false) {
+                    message = 'Password wrong!';
+                } else if(User.activate == false){
+                    message = 'Account not activate!!!';
+                } else {
+                    status = true;
+                    access_token = authService.getAccessToken(User.UUID)
+                    refresh_token = authService.getRefreshToken(User.UUID)
+                }
+                res.status(200).json({success: status, access_token, refresh_token, message}).end();
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({error: err.message});
         }
     },
 }

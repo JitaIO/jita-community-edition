@@ -17,4 +17,7 @@ if(!isProduction) console.log("----- \x1b[36m[%s]\x1b[0m \x1b[33m%s\x1b[0m loadi
 router.get('/activate', UserController.activate);
 if(!isProduction) console.log("----- \x1b[36m[%s]\x1b[0m \x1b[33m%s\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/user/activate","GET");
 
+router.post('/signin', UserController.signin);
+if(!isProduction) console.log("----- \x1b[36m[%s]\x1b[0m \x1b[33m%s\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "/signin","POST");
+
 module.exports = router;

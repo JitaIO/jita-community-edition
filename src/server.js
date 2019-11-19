@@ -1,4 +1,5 @@
 import express from 'express';
+import passport from 'passport';
 import { IpFilter as ipfilter } from 'express-ipfilter';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -11,6 +12,8 @@ import { augmentSchema, makeAugmentedSchema } from 'neo4j-graphql-js';
 import { ApolloServer } from 'apollo-server-express';
 import { v1 as neo4j } from 'neo4j-driver';
 import { typeDefs, resolvers } from './models/Schemas';
+import authService from './services/authService';
+
 
 dotenv.config();
 
@@ -46,6 +49,11 @@ if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32m
 
 app.use(flash());
 if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "flash");
+
+app.use(passport.initialize());
+if(!isProduction) console.log("Middleware \x1b[36m[%s]\x1b[0m loading...\x1b[32mcomplete\x1b[0m", "password");
+
+passport.use(authService.getStrategy());
 
 if(!isProduction) {
     app.use(errorHandler());
