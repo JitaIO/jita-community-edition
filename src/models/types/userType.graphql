@@ -14,7 +14,7 @@ type User {
 }
 
 type Query {
-    User(email: String): User
+    User(email: String, UUID: String): User
     Users: [User]
 }
 
