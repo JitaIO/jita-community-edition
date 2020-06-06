@@ -43,7 +43,7 @@
     "apollo-link-http": "^1.5.16",
     "apollo-link-logger": "^1.2.3",
     "apollo-link-state": "^0.4.2",
-    "apollo-server": "^2.9.7",
+    "apollo-server": "^2.14.2",
     "apollo-server-express": "^2.9.7",
     "app-root-path": "^3.0.0",
     "babel-core": "^7.0.0-bridge.0",
