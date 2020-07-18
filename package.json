@@ -65,7 +65,7 @@
     "http": "0.0.0",
     "jsonwebtoken": "^8.5.1",
     "localStorage": "^1.0.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "merge-graphql-schemas": "^1.7.3",
     "morgan": "^1.9.1",
     "neo4j-driver": "^1.7.6",
